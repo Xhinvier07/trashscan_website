@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> AGILE | TrashScan</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../images/trashscan.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Typed.js for typing effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Anime.js for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Tippy.js for advanced tooltips -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css">
+</head>
+<body>
+    <!-- Modern Header with Hero Image -->
+    <header class="header">
+        <div class="navbar">
+            <div class="logo-container" id="logoLink">
+                <img src="../images/banner1.png" alt="TrashScan Logo" class="logo">
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div id="hero" class="hero-container">
+            <div class="hero-image">
+                <img src="../images/hero.png" alt="TrashScan Hero">
+            </div>
+            <div class="hero-content">
+                <p class="tagline"><span id="typed-text"></span></p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Overview Section -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Project Overview</h2>
+                <div class="overview-content">
+                    <div class="overview-text" data-aos="fade-right" data-aos-delay="200">
+                        <p class="highlight-text"><span id="overview-typed-text"></span></p>
+                        <p>Our innovative system leverages cutting-edge computer vision technology to transform how urban environments manage waste. By identifying litter hotspots and providing actionable analytics, TrashScan enables more efficient resource allocation and cleaner public spaces.</p>
+                    </div>
+                    <div class="overview-carousel" data-aos="fade-left" data-aos-delay="400">
+                        <div class="carousel-container">
+                            <div class="carousel-slide active" id="slide1">
+                                <img src="../images/dashboard.PNG" alt="TrashScan Dashboard">
+                                <div class="slide-caption">Interactive Dashboard</div>
+                            </div>
+                            <div class="carousel-slide" id="slide2">
+                                <img src="../images/surveillance.PNG" alt="TrashScan Surveillance">
+                                <div class="slide-caption">Litter Surveillance</div>
+                            </div>
+                            <div class="carousel-slide" id="slide3">
+                                <img src="../images/surveillance1.PNG" alt="TrashScan Monitoring">
+                                <div class="slide-caption">Advanced Monitoring</div>
+                            </div>
+                            <div class="carousel-slide" id="slide4">
+                                <img src="../images/analytics.PNG" alt="TrashScan Analytics">
+                                <div class="slide-caption">Insightful Analytics</div>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <div class="carousel-indicators">
+                                <span class="indicator active" data-slide="slide1"></span>
+                                <span class="indicator" data-slide="slide2"></span>
+                                <span class="indicator" data-slide="slide3"></span>
+                                <span class="indicator" data-slide="slide4"></span>
+                            </div>
+                            <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="100" data-tippy-content="Real-time litter detection powered by advanced AI algorithms">
+                        <div class="feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Real-time Detection</h3>
+                        <p>AI-powered litter detection using YOLOv8 with existing CCTV infrastructure.</p>
+                    </div>
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="200" data-tippy-content="Interactive visual maps showing where litter is concentrated in the city">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Density Heatmaps</h3>
+                        <p>Visual representation of litter concentration across monitored areas.</p>
+                    </div>
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="300" data-tippy-content="Get notified when garbage levels exceed thresholds in specific areas">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Alert System</h3>
+                        <p>Automated notifications when litter accumulation exceeds defined thresholds.</p>
+                    </div>
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="400" data-tippy-content="Comprehensive analytics to track patterns and make better decisions">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Comprehensive data visualization and reporting tools for informed decision-making.</p>
+                    </div>
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="500" data-tippy-content="Historical data tracking for long-term analysis and trend identification">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Data Logging</h3>
+                        <p>Historical tracking of litter patterns and cleanup effectiveness over time.</p>
+                    </div>
+                    <div class="feature-card" data-aos="flip-left" data-aos-delay="600" data-tippy-content="Capture visual evidence of litter conditions for reports and record-keeping">
+                        <div class="feature-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h3>Screenshot Tools</h3>
+                        <p>Capture and document litter instances for reports and evidence collection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Section -->
+        <section id="architecture" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">System Architecture</h2>
+                <div class="architecture-content">
+                    <div class="architecture-image" data-aos="zoom-in">
+                        <img src="../images/sys_architecture.png" alt="System Architecture" class="fade-in">
+                    </div>
+                    <div class="architecture-text" data-aos="fade-left" data-aos-delay="300">
+                        <p>TrashScan connects to existing CCTV infrastructure, processes live feeds with object detection models, and visualizes data on an interactive dashboard.</p>
+                        <div class="architecture-steps">
+                            <div class="step" data-aos="fade-up" data-aos-delay="400">
+                                <span class="step-number">1</span>
+                                <p>CCTV cameras capture live video footage from city streets</p>
+                            </div>
+                            <div class="step" data-aos="fade-up" data-aos-delay="500">
+                                <span class="step-number">2</span>
+                                <p>AI algorithms process the video to detect and classify litter</p>
+                            </div>
+                            <div class="step" data-aos="fade-up" data-aos-delay="600">
+                                <span class="step-number">3</span>
+                                <p>Data is analyzed and stored in the central database</p>
+                            </div>
+                            <div class="step" data-aos="fade-up" data-aos-delay="700">
+                                <span class="step-number">4</span>
+                                <p>Interactive dashboard presents actionable insights</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section with Fixed Timeline -->
+        <section id="how-it-works" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+                <div class="workflow-container">
+                    <div class="workflow-timeline">
+                        <div class="timeline-step" data-aos="fade-right" data-aos-delay="100">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3>Video Capture</h3>
+                                <p>Cameras capture video feeds from streets</p>
+                            </div>
+                        </div>
+                        <div class="timeline-connector" data-aos="fade-in" data-aos-delay="200"></div>
+                        <div class="timeline-step" data-aos="fade-right" data-aos-delay="300">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-icon">
+                                    <i class="fas fa-microscope"></i>
+                                </div>
+                                <h3>AI Detection</h3>
+                                <p>Frames are extracted and passed to a trained detection model (YOLOv8 + SAHI)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-connector" data-aos="fade-in" data-aos-delay="400"></div>
+                        <div class="timeline-step" data-aos="fade-right" data-aos-delay="500">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>Analysis</h3>
+                                <p>Detected litter is counted and analyzed for density</p>
+                            </div>
+                        </div>
+                        <div class="timeline-connector" data-aos="fade-in" data-aos-delay="600"></div>
+                        <div class="timeline-step" data-aos="fade-right" data-aos-delay="700">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-icon">
+                                    <i class="fas fa-map"></i>
+                                </div>
+                                <h3>Visualization</h3>
+                                <p>A heatmap and litter density chart are generated in real time</p>
+                            </div>
+                        </div>
+                        <div class="timeline-connector" data-aos="fade-in" data-aos-delay="800"></div>
+                        <div class="timeline-step" data-aos="fade-right" data-aos-delay="900">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <h3>Notification</h3>
+                                <p>If density exceeds thresholds, notifications are sent to sweepers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack Section -->
+        <section id="tech-stack" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Technology Stack</h2>
+                <div class="tech-stack-container">
+                    <div class="tech-layer" data-aos="fade-up">
+                        <div class="layer-title">
+                            <div class="layer-icon"><i class="fas fa-desktop"></i></div>
+                            <h3>Frontend</h3>
+                        </div>
+                        <div class="tech-cards">
+                            <div class="tech-card" data-tech="electron" data-tippy-content="Cross-platform desktop application framework">
+                                <i class="tech-icon fab fa-free-code-camp"></i>
+                                <span>Electron</span>
+                            </div>
+                            <div class="tech-card" data-tech="html" data-tippy-content="Standard markup language for web pages">
+                                <i class="tech-icon fab fa-html5"></i>
+                                <span>HTML</span>
+                            </div>
+                            <div class="tech-card" data-tech="css" data-tippy-content="Styling language for web design">
+                                <i class="tech-icon fab fa-css3-alt"></i>
+                                <span>CSS</span>
+                            </div>
+                            <div class="tech-card" data-tech="js" data-tippy-content="Programming language that enables interactive web pages">
+                                <i class="tech-icon fab fa-js"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="tech-card" data-tech="d3" data-tippy-content="JavaScript library for data visualization">
+                                <i class="tech-icon fas fa-chart-bar"></i>
+                                <span>D3.js</span>
+                            </div>
+                            <div class="tech-card" data-tech="maps" data-tippy-content="Integrates Google Maps for location-based features">
+                                <i class="tech-icon fas fa-map-marked-alt"></i>
+                                <span>Google Maps</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-layer" data-aos="fade-up" data-aos-delay="200">
+                        <div class="layer-title">
+                            <div class="layer-icon"><i class="fas fa-server"></i></div>
+                            <h3>Backend</h3>
+                        </div>
+                        <div class="tech-cards">
+                            <div class="tech-card" data-tech="python" data-tippy-content="Python web framework for building APIs">
+                                <i class="tech-icon fab fa-python"></i>
+                                <span>Python Flask API</span>
+                            </div>
+                            <div class="tech-card" data-tech="yolo" data-tippy-content="State-of-the-art object detection model">
+                                <i class="tech-icon fas fa-eye"></i>
+                                <span>YOLOv8</span>
+                            </div>
+                            <div class="tech-card" data-tech="sahi" data-tippy-content="Slicing Aided Hyper Inference for improved small object detection">
+                                <i class="tech-icon fas fa-crop-alt"></i>
+                                <span>SAHI</span>
+                            </div>
+                            <div class="tech-card" data-tech="numpy" data-tippy-content="Scientific computing library for Python">
+                                <i class="tech-icon fas fa-calculator"></i>
+                                <span>NumPy</span>
+                            </div>
+                            <div class="tech-card" data-tech="opencv" data-tippy-content="Open source computer vision library">
+                                <i class="tech-icon fas fa-camera"></i>
+                                <span>OpenCV</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-layer" data-aos="fade-up" data-aos-delay="400">
+                        <div class="layer-title">
+                            <div class="layer-icon"><i class="fas fa-database"></i></div>
+                            <h3>Database & Storage</h3>
+                        </div>
+                        <div class="tech-cards">
+                            <div class="tech-card" data-tech="csv" data-tippy-content="Comma-separated values for data storage">
+                                <i class="tech-icon fas fa-file-csv"></i>
+                                <span>CSV</span>
+                            </div>
+                            <div class="tech-card" data-tech="json" data-tippy-content="Lightweight data-interchange format">
+                                <i class="tech-icon fas fa-file-code"></i>
+                                <span>JSON</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-layer" data-aos="fade-up" data-aos-delay="600">
+                        <div class="layer-title">
+                            <div class="layer-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Visualization Tools</h3>
+                        </div>
+                        <div class="tech-cards">
+                            <div class="tech-card" data-tech="heatmaps" data-tippy-content="Visualize density of litter across mapped areas">
+                                <i class="tech-icon fas fa-fire"></i>
+                                <span>Google Maps </span>
+                            </div>
+                            <div class="tech-card" data-tech="d3" data-tippy-content="Powerful data visualization library">
+                                <i class="tech-icon fas fa-chart-bar"></i>
+                                <span>D3.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Purpose and Goals Section -->
+        <section id="purpose" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Purpose and Goals</h2>
+                <div class="purpose-content">
+                    <div class="purpose-text">
+                        <p>TrashScan was developed to address the growing challenges of urban waste management in busy metropolitan areas. Our system aims to:</p>
+                        <ul class="purpose-list">
+                            <li><i class="fas fa-check-circle"></i> Improve waste response efficiency by identifying priority areas</li>
+                            <li><i class="fas fa-check-circle"></i> Support urban cleanliness initiatives with real-time monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Reduce manual street monitoring costs and labor requirements</li>
+                            <li><i class="fas fa-check-circle"></i> Assist LGUs and MMDA in data-driven cleanup planning</li>
+                            <li><i class="fas fa-check-circle"></i> Create cleaner, more sustainable urban environments</li>
+                        </ul>
+                    </div>
+                    <div class="purpose-image">
+                        <div class="purpose-card">
+                            <h3>Our Vision</h3>
+                            <p>Cleaner streets through smarter technology</p>
+                        </div>
+                        <div class="purpose-card">
+                            <h3>Our Mission</h3>
+                            <p>Empower communities with AI-driven waste management solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Target Users Section -->
+        <section id="users" class="section">
+            <div class="container">
+                <h2 class="section-title">Target Users</h2>
+                <div class="users-content">
+                    <div class="user-group">
+                        <div class="user-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h3>Local Government Units</h3>
+                        <p>City planners and municipal authorities responsible for urban cleanliness</p>
+                    </div>
+                    <div class="user-group">
+                        <div class="user-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Waste Management Departments</h3>
+                        <p>Teams managing collection routes and resource allocation</p>
+                    </div>
+                    <div class="user-group">
+                        <div class="user-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <h3>Street Sweepers</h3>
+                        <p>Front-line workers responsible for maintaining clean public spaces</p>
+                    </div>
+                    <div class="user-group">
+                        <div class="user-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Urban Planners & Researchers</h3>
+                        <p>Professionals studying waste patterns to improve city design</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Requirements Section -->
+        <section id="system-requirements" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">System Requirements</h2>
+                <div class="requirements-container">
+                    <div class="requirements-card">
+                        <div class="req-header">
+                            <div class="req-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Minimum Requirements</h3>
+                        </div>
+                        <ul class="req-list">
+                            <li><i class="fas fa-microchip"></i> Intel Core i3</li>
+                            <li><i class="fas fa-memory"></i> 8GB RAM</li>
+                            <li><i class="fas fa-tv"></i> 2GB VRAM GPU</li>
+                            <li><i class="fab fa-windows"></i> Windows 10</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirements-card recommended">
+                        <div class="req-header">
+                            <div class="req-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Recommended Specs</h3>
+                        </div>
+                        <ul class="req-list">
+                            <li><i class="fas fa-microchip"></i> Intel Core i5 or better</li>
+                            <li><i class="fas fa-memory"></i> 16GB RAM</li>
+                            <li><i class="fas fa-tv"></i> GTX 1050 or better GPU</li>
+                            <li><i class="fab fa-windows"></i> Windows 10/11</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirements-card">
+                        <div class="req-header">
+                            <div class="req-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Additional Requirements</h3>
+                        </div>
+                        <ul class="req-list">
+                            <li><i class="fas fa-video"></i> Access to IP cameras</li>
+                            <li><i class="fas fa-wifi"></i> Minimal internet connection</li>
+                            <li><i class="fas fa-server"></i> RTSP streaming capability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance & Ethics Section -->
+        <section id="compliance" class="section">
+            <div class="container">
+                <h2 class="section-title">Compliance & Ethical Considerations</h2>
+                <div class="compliance-container">
+                    <div class="compliance-image">
+                        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_AQEOul.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                    </div>
+                    <div class="compliance-content">
+                        <div class="ethics-card">
+                            <div class="ethics-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="ethics-text">
+                                <h3>Privacy Protection</h3>
+                                <p>TrashScan avoids facial recognition and private property monitoring</p>
+                            </div>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">
+                                <i class="fas fa-map-marked"></i>
+                            </div>
+                            <div class="ethics-text">
+                                <h3>Public Spaces Focus</h3>
+                                <p>Only operates on public roads and visible waste</p>
+                            </div>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="ethics-text">
+                                <h3>Regulatory Compliance</h3>
+                                <p>Complies with local data protection and government guidelines</p>
+                            </div>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="ethics-text">
+                                <h3>Responsible Use</h3>
+                                <p>Promotes responsible use of surveillance for environmental management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Roadmap Section -->
+        <section id="roadmap" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Future Roadmap</h2>
+                <div class="roadmap-container">
+                    <div class="roadmap-title">
+                        <h3>Our Vision for Expansion</h3>
+                    </div>
+                    <div class="roadmap-timeline">
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-content">
+                                <div class="roadmap-date">Near Future</div>
+                                <div class="roadmap-card">
+                                    <div class="roadmap-icon">
+                                        <i class="fas fa-cloud"></i>
+                                    </div>
+                                    <h4>Cloud Integration</h4>
+                                    <p>Integration with LGU databases and cloud services</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-content">
+                                <div class="roadmap-date">2025</div>
+                                <div class="roadmap-card">
+                                    <div class="roadmap-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h4>Mobile Application</h4>
+                                    <p>Mobile app for real-time litter alerts to sweepers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-content">
+                                <div class="roadmap-date">2026</div>
+                                <div class="roadmap-card">
+                                    <div class="roadmap-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h4>Advanced Classification</h4>
+                                    <p>Advanced litter classification and prioritization system</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <div class="roadmap-content">
+                                <div class="roadmap-date">Beyond</div>
+                                <div class="roadmap-card">
+                                    <div class="roadmap-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h4>Policy Support</h4>
+                                    <p>Long-term trend analysis for policymaking support</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section with Anime.js hover effects-->
+        <section id="team" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Meet Team AGILE</h2>
+                <div class="team-intro">
+                    <img src="../images/agile.png" alt="AGILE Logo" class="team-logo">
+                    <p>A passionate group of developers committed to creating innovative solutions for urban challenges.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member" data-aos="fade-up">
+                        <div class="member-image">
+                            <img src="../images/jansen.png" alt="Jansen Jhoel G. Moral">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>Project Lead</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Jansen Jhoel G. Moral</h3>
+                        <p class="member-role">Project Manager / AI&ML Developer / Full Stack Developer</p>
+                        <div class="member-social">
+                            <a href="https://github.com/Xhinvier07" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/xhinvier/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member-image">
+                            <img src="../images/dane.png" alt="Dane Ross B. Quintano">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>Backend Expert</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Dane Ross B. Quintano</h3>
+                        <p class="member-role">Backend Developer / Database Developer / Documentation</p>
+                        <div class="member-social">
+                            <a href="https://github.com/d-quint" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/dane-ross-quintano-a17aa2284/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                        <div class="member-image">
+                            <img src="../images/john.png" alt="John Christian S. Paglinawan">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>UI/UX Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>John Christian S. Paglinawan</h3>
+                        <p class="member-role">Frontend Developer / UI&UX Designer / Documentation</p>
+                        <div class="member-social">
+                            <a href="https://github.com/Jccc07" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/john-christian-paglinawan-552159143/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="../images/dharmveer.jpg" alt="Dharmveer S. Sandhu">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>QA Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Dharmveer S. Sandhu</h3>
+                        <p class="member-role">QA Analyst / Data Analyst</p>
+                        <div class="member-social">
+                            <a href="https://github.com/DSandhu12" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/dharmveer-sandhu-3a870528a/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="../images/cristen.png" alt="Cristen Lei D. Tolentino">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>Graphics Artist</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Cristen Lei D. Tolentino</h3>
+                        <p class="member-role">Graphics Designer</p>
+                        <div class="member-social">
+                            <a href="https://github.com/echompz" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/cristentolentino/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="../images/justine.png" alt="Justine Jude C. Pura">
+                            <div class="member-overlay">
+                                <div class="overlay-content">
+                                    <p>Thesis Mentor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Justine Jude C. Pura</h3>
+                        <p class="member-role">Thesis Adviser / Pogi Developer</p>
+                        <div class="member-social">
+                            <a href="https://www.facebook.com/justinejudepura21" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/justinepura/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section with AnimeJS -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-card" data-aos="zoom-in">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p><a href="mailto:agiletrashscan@gmail.com" class="animated-link">agiletrashscan@gmail.com</a></p>
+                        </div>
+                        <div class="contact-card" data-aos="zoom-in" data-aos-delay="200">
+                            <i class="fab fa-github"></i>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/Xhinvier07/TrashScan" target="_blank" class="animated-link">TrashScan Repository</a></p>
+                        </div>
+                    </div>
+                    <div class="feedback-form" data-aos="fade-left" data-aos-delay="300">
+                        <h3>Send Us Feedback</h3>
+                        <form id="feedbackForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" class="animated-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Your email" class="animated-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Your feedback or questions" class="animated-input"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/banner1.png" alt="TrashScan Logo">
+                    <p>TrashScan Surveillance System</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/jm.xhinvierxd/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/jm.xhinvierxd/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/xhinvier/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Xhinvier"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team AGILE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 1000,
+            once: true,
+            mirror: false
+        });
+
+        // Hamburger menu functionality
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.hamburger-menu').classList.remove('active');
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize Typed.js for a typing effect
+        const typedText = new Typed('#typed-text', {
+            strings: ['Scan the Litter, Make the Streets Better!', 'Smart Litter Detection for Cleaner Cities', 'AI-Powered Urban Waste Monitoring'],
+            typeSpeed: 40,
+            backSpeed: 30,
+            backDelay: 2000,
+            startDelay: 500,
+            loop: true
+        });
+        
+        // Initialize Typed.js for the overview text
+        const overviewTypedText = new Typed('#overview-typed-text', {
+            strings: ['TrashScan is an AI-powered surveillance system designed to detect and monitor street litter in real time using CCTV cameras, helping cities make smarter waste management decisions.'],
+            typeSpeed: 20,
+            startDelay: 800,
+            showCursor: true,
+            cursorChar: '|',
+            loop: false
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all sections, feature cards, team members
+        document.querySelectorAll('.section, .feature-card, .team-member, .contact-card, .user-group, .step').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Initialize Tippy.js tooltips on feature cards
+        tippy('[data-tippy-content]', {
+            placement: 'top',
+            animation: 'scale',
+            theme: 'light-border',
+            duration: 300
+        });
+
+        // Add AnimeJS animations to various elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate team member images on hover
+            document.querySelectorAll('.member-image').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this.querySelector('.member-overlay'),
+                        opacity: 1,
+                        translateY: 0,
+                        easing: 'easeOutExpo',
+                        duration: 600
+                    });
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this.querySelector('.member-overlay'),
+                        opacity: 0,
+                        translateY: 20,
+                        easing: 'easeOutExpo',
+                        duration: 600
+                    });
+                });
+            });
+
+            // Animate tech cards on hover
+            document.querySelectorAll('.tech-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.1,
+                        boxShadow: '0 15px 30px rgba(0, 45, 24, 0.2)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        easing: 'easeOutElastic(1, .6)',
+                        duration: 800
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        boxShadow: '0 5px 15px rgba(0, 45, 24, 0.1)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        easing: 'easeOutElastic(1, .6)',
+                        duration: 800
+                    });
+                });
+            });
+            
+            // Animate button on hover
+            document.getElementById('submitBtn').addEventListener('mouseenter', function() {
+                anime({
+                    targets: this.querySelector('i'),
+                    translateX: 5,
+                    rotate: 15,
+                    easing: 'easeOutElastic(1, .6)',
+                    duration: 400
+                });
+            });
+            
+            document.getElementById('submitBtn').addEventListener('mouseleave', function() {
+                anime({
+                    targets: this.querySelector('i'),
+                    translateX: 0,
+                    rotate: 0,
+                    easing: 'easeOutElastic(1, .6)',
+                    duration: 400
+                });
+            });
+            
+            // Animate form inputs on focus
+            document.querySelectorAll('.animated-input').forEach(input => {
+                input.addEventListener('focus', function() {
+                    anime({
+                        targets: this,
+                        boxShadow: '0 0 0 3px rgba(15, 112, 41, 0.3)',
+                        easing: 'easeOutExpo',
+                        duration: 400
+                    });
+                });
+                
+                input.addEventListener('blur', function() {
+                    anime({
+                        targets: this,
+                        boxShadow: '0 0 0 0px rgba(15, 112, 41, 0)',
+                        easing: 'easeOutExpo',
+                        duration: 400
+                    });
+                });
+            });
+            
+            // Fix for How It Works timeline connectors
+            document.querySelectorAll('.timeline-connector').forEach(connector => {
+                connector.style.height = '50px';
+                connector.style.opacity = 1;
+                connector.style.transform = 'scaleY(1)';
+            });
+        });
+
+        // Image Carousel Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            let slideInterval;
+
+            // Initialize carousel and start auto-rotation
+            function startCarousel() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            // Show the current slide
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                currentSlide = (index + totalSlides) % totalSlides;
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+
+            // Go to the next slide
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            // Go to the previous slide
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', function() {
+                clearInterval(slideInterval);
+                prevSlide();
+                startCarousel();
+            });
+
+            nextBtn.addEventListener('click', function() {
+                clearInterval(slideInterval);
+                nextSlide();
+                startCarousel();
+            });
+
+            // Indicator clicks
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    startCarousel();
+                });
+            });
+
+            // Allow clicking on slides to go to next slide
+            slides.forEach(slide => {
+                slide.addEventListener('click', function() {
+                    clearInterval(slideInterval);
+                    nextSlide();
+                    startCarousel();
+                });
+            });
+
+            // Start the carousel
+            startCarousel();
+
+            // Pause on hover
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', function() {
+                startCarousel();
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Animate button on submit
+            anime({
+                targets: '#submitBtn',
+                scale: [1.1, 1],
+                backgroundColor: [
+                    {value: '#0B4619', duration: 100},
+                    {value: '#004d36', duration: 300}
+                ],
+                easing: 'easeInOutQuad',
+                duration: 400
+            });
+            
+            // Here you would typically send the form data to a server
+            // For now, we'll just show a success message
+            setTimeout(() => {
+                alert('Thank you for your feedback! We will get back to you soon.');
+                this.reset();
+            }, 500);
+        });
+
+        // Add click event to logo to navigate back to homepage
+        document.getElementById('logoLink').addEventListener('click', function() {
+            window.location.href = '../index.html';
+        });
+    </script>
+    
+    <!-- Add event handler for external links -->
+    <script>
+        // Initialize shell module for opening external links
+        const { shell } = require('electron');
+        
+        // Add click event listeners to all external links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all anchor tags
+            const links = document.querySelectorAll('a[href]');
+            
+            // Add click handler to each link
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                
+                // Check if it's an external link or social media link
+                if (href.startsWith('http') || href.startsWith('https') || 
+                    href.startsWith('mailto') || href === '#' && link.closest('.social-icons')) {
+                    
+                    link.addEventListener('click', (event) => {
+                        // Prevent the default behavior
+                        event.preventDefault();
+                        
+                        // Get the URL from the href attribute
+                        const url = link.getAttribute('href');
+                        
+                        // Skip if it's just a page anchor
+                        if (url === '#') return;
+                        
+                        // If it's a real URL, open it in the default browser
+                        if (url.startsWith('http') || url.startsWith('https') || url.startsWith('mailto')) {
+                            shell.openExternal(url);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Feedback Form Handler -->
+    <script>
+        // Get nodemailer and other required modules
+        const nodemailer = require('nodemailer');
+        
+        // Handle form submission
+        document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Animate button on submit
+            anime({
+                targets: '#submitBtn',
+                scale: [1.1, 1],
+                backgroundColor: [
+                    {value: '#0B4619', duration: 100},
+                    {value: '#004d36', duration: 300}
+                ],
+                easing: 'easeInOutQuad',
+                duration: 400
+            });
+            
+            try {
+                // Use the same email configuration as in functions.js
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'agiletrashscan@gmail.com',
+                        pass: 'lujb zcqd vihg uipe'
+                    }
+                });
+                
+                // Format the current date and time
+                const now = new Date();
+                const formattedDate = formatDate(now);
+                const formattedTime = formatTime(now);
+                
+                // Create HTML email template
+                const htmlBody = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                line-height: 1.6;
+                                color: #333;
+                                max-width: 600px;
+                                margin: 0 auto;
+                            }
+                            .header {
+                                background-color: #074d36;
+                                color: white;
+                                padding: 20px;
+                                text-align: center;
+                                border-radius: 5px 5px 0 0;
+                            }
+                            .content {
+                                padding: 20px;
+                                border: 1px solid #ddd;
+                                border-top: none;
+                                border-radius: 0 0 5px 5px;
+                            }
+                            .footer {
+                                margin-top: 20px;
+                                font-size: 12px;
+                                text-align: center;
+                                color: #666;
+                            }
+                            .info-row {
+                                margin-bottom: 10px;
+                            }
+                            .info-label {
+                                font-weight: bold;
+                                margin-right: 10px;
+                            }
+                            .message-box {
+                                background-color: #f4f4f4;
+                                border-left: 4px solid #074d36;
+                                padding: 15px;
+                                margin: 20px 0;
+                                border-radius: 0 5px 5px 0;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="header">
+                            <h1>TrashScan Website Feedback</h1>
+                        </div>
+                        <div class="content">
+                            <div class="info-row">
+                                <span class="info-label">Date:</span> ${formattedDate}
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Time:</span> ${formattedTime}
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Name:</span> ${name}
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email:</span> ${email}
+                            </div>
+                            
+                            <div class="message-box">
+                                <strong>Message:</strong><br>
+                                ${message.replace(/\n/g, '<br>')}
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p>This message was sent from the TrashScan About page feedback form.</p>
+                        </div>
+                    </body>
+                    </html>
+                `;
+                
+                // Email options
+                const mailOptions = {
+                    from: 'agiletrashscan@gmail.com',
+                    to: 'agiletrashscan@gmail.com', // Send to your own email
+                    replyTo: email, // Set reply-to as the user's email
+                    subject: `TrashScan Feedback from ${name}`,
+                    html: htmlBody
+                };
+                
+                // Send the email
+                console.log("Sending feedback email...");
+                const info = await transporter.sendMail(mailOptions);
+                console.log('Feedback email sent:', info.response);
+                
+                // Success message
+                alert('Thank you for your feedback! We will get back to you soon.');
+                
+                // Reset the form
+                this.reset();
+                
+            } catch (error) {
+                console.error("Error sending feedback:", error);
+                alert("There was an error sending your feedback. Please try again later.");
+            }
+        });
+        
+        // Helper function to format date (copied from functions.js)
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        
+        // Helper function to format time (copied from functions.js)
+        function formatTime(date) {
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const strMinutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero to minutes
+            return `${hours}:${strMinutes} ${ampm}`;
+        }
+    </script>
+</body>
+</html>
