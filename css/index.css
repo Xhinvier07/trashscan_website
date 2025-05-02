@@ -165,6 +165,7 @@ nav ul li a:hover::after {
     z-index: 2;
     margin-bottom: 2rem;
     max-width: 800px;
+    width: 100%;
 }
 
 .hero-content h1 {
@@ -183,6 +184,9 @@ nav ul li a:hover::after {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     animation: fadeInUp 1s ease-out forwards;
     min-height: 60px; /* For the typing effect */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .hero-image {
@@ -1049,6 +1053,10 @@ footer {
         font-size: 3rem;
     }
     
+    .hero-content .tagline {
+        font-size: 1.8rem;
+    }
+    
     .hero-image {
         max-width: 250px;
     }
@@ -1081,12 +1089,13 @@ footer {
         font-size: 2.5rem;
     }
     
-    .tagline {
-        font-size: 1rem;
+    .hero-content .tagline {
+        font-size: 1.5rem;
+        min-height: 50px;
     }
     
     .hero-image {
-        max-width: 250px;
+        max-width: 220px;
     }
     
     .overview-content,
@@ -1159,12 +1168,13 @@ footer {
         font-size: 2rem;
     }
     
-    .tagline {
-        font-size: 1rem;
+    .hero-content .tagline {
+        font-size: 1.2rem;
+        min-height: 40px;
     }
     
     .hero-image {
-        max-width: 250px;
+        max-width: 200px;
     }
     
     .footer-content {
@@ -1216,8 +1226,14 @@ footer {
 }
 
 @media (max-width: 400px) {
+    .hero-content .tagline {
+        font-size: 1rem;
+        min-height: 35px;
+        padding: 0 10px;
+    }
+
     .hero-image {
-        max-width: 250px;
+        max-width: 180px;
     }
 
     .section-title {
@@ -1250,6 +1266,22 @@ footer {
     .slide-caption {
         padding: 8px;
         font-size: 0.8rem;
+    }
+}
+
+/* Add specific fix for iPhone and very small screens */
+@media (max-width: 380px) {
+    .hero-content .tagline {
+        font-size: 0.9rem;
+        min-height: 30px;
+    }
+    
+    .hero-image {
+        max-width: 160px;
+    }
+    
+    .hero-container {
+        padding: 100px 15px 40px;
     }
 }
 
