@@ -1050,7 +1050,7 @@ footer {
     }
     
     .hero-image {
-        max-width: 300px;
+        max-width: 200px;
     }
     
     .container {
@@ -1082,11 +1082,11 @@ footer {
     }
     
     .tagline {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .hero-image {
-        max-width: 250px;
+        max-width: 200px;
     }
     
     .overview-content,
@@ -1164,7 +1164,7 @@ footer {
     }
     
     .hero-image {
-        max-width: 300px;
+        max-width: 200px;
     }
     
     .footer-content {
@@ -1217,7 +1217,7 @@ footer {
 
 @media (max-width: 400px) {
     .hero-image {
-        max-width: 300px;
+        max-width: 200px;
     }
 
     .section-title {
