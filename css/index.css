@@ -187,7 +187,7 @@ nav ul li a:hover::after {
 
 .hero-image {
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
     margin: 0 auto;
     z-index: 2;
     animation: floatImage 3s ease-in-out infinite;
@@ -1164,7 +1164,7 @@ footer {
     }
     
     .hero-image {
-        max-width: 400px;
+        max-width: 300px;
     }
     
     .footer-content {
@@ -1217,7 +1217,7 @@ footer {
 
 @media (max-width: 400px) {
     .hero-image {
-        max-width: 180px;
+        max-width: 300px;
     }
 
     .section-title {
