@@ -148,7 +148,7 @@
                         </div>
                         <h3>Real-World Application</h3>
                         <p class="pilot-description">
-                            We successfully deployed TrashScan in Brgy 118 Zone 9, Tondo Manila for a one-week pilot study to demonstrate its effectiveness in a real urban environment. The system monitored key streets, identified litter hotspots, and provided actionable data to local authorities.
+                            We successfully deployed TrashScan in <b>Brgy 118 Zone 9, Tondo Manila</b> for a one-week pilot study to demonstrate its effectiveness in a real urban environment. The system monitored key streets, identified litter hotspots, and provided actionable data to local authorities.
                         </p>
                         <div class="pilot-highlights">
                             <div class="highlight-item">
@@ -989,6 +989,50 @@
         </section>
     </main>
 
+    <!-- Citation Section -->
+    <section id="citation" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Citation</h2>
+            <div class="citation-content" data-aos="fade-up" data-aos-delay="200">
+                <div class="citation-card">
+                    <div class="citation-title">
+                        <h3>TrashScan: A Surveillance-Powered Integrated System for Monitoring Real-Time Street Litter Density utilizing Convolutional Neural Networks</h3>
+                    </div>
+                    <div class="citation-authors">
+                        <p>
+                            Moral, Jansen Jhoel G.<br>
+                            Paglinawan, John Christian S.<br>
+                            Quintano, Dane Ross B.<br>
+                            Sandhu, Dharmveer S.
+                        </p>
+                    </div>
+                    <div class="citation-formats">
+                        <h4>Cite this work</h4>
+                        <div class="format-tabs">
+                            <div class="format-tab active" data-format="apa">APA</div>
+                            <div class="format-tab" data-format="mla">MLA</div>
+                            <div class="format-tab" data-format="ieee">IEEE</div>
+                        </div>
+                        <div class="format-content">
+                            <div class="format-text apa active">
+                                <p>Moral, J. J. G., Paglinawan, J. C. S., Quintano, D. R. B., & Sandhu, D. S. (2025). TrashScan: A Surveillance-Powered Integrated System for Monitoring Real-Time Street Litter Density utilizing Convolutional Neural Networks.</p>
+                            </div>
+                            <div class="format-text mla">
+                                <p>Moral, Jansen Jhoel G., et al. "TrashScan: A Surveillance-Powered Integrated System for Monitoring Real-Time Street Litter Density utilizing Convolutional Neural Networks." 2025.</p>
+                            </div>
+                            <div class="format-text ieee">
+                                <p>J. J. G. Moral, J. C. S. Paglinawan, D. R. B. Quintano, and D. S. Sandhu, "TrashScan: A Surveillance-Powered Integrated System for Monitoring Real-Time Street Litter Density utilizing Convolutional Neural Networks," 2025.</p>
+                            </div>
+                        </div>
+                        <button id="copy-citation" class="citation-btn">
+                            <i class="fas fa-copy"></i> Copy Citation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1016,7 +1060,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Team AGILE. All rights reserved.</p>
+                <p>&copy; 2024 AGILE. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1472,6 +1516,61 @@
                 }
             });
         });
+
+        // Citation format tabs functionality
+        const formatTabs = document.querySelectorAll('.format-tab');
+        const formatTexts = document.querySelectorAll('.format-text');
+        
+        formatTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const format = this.getAttribute('data-format');
+                
+                // Remove active class from all tabs and texts
+                formatTabs.forEach(t => t.classList.remove('active'));
+                formatTexts.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding text
+                this.classList.add('active');
+                document.querySelector(`.format-text.${format}`).classList.add('active');
+            });
+        });
+        
+        // Copy citation functionality
+        const copyButton = document.getElementById('copy-citation');
+        
+        if (copyButton) {
+            copyButton.addEventListener('click', function() {
+                // Get the active citation text
+                const activeFormat = document.querySelector('.format-text.active p');
+                const textToCopy = activeFormat.textContent;
+                
+                // Create a temporary textarea element to copy from
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
+                    // Copy the text
+                    document.execCommand('copy');
+                    
+                    // Change button text temporarily
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    
+                    // Reset button text after 2 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                    
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                } finally {
+                    // Remove the temporary element
+                    document.body.removeChild(textarea);
+                }
+            });
+        }
     </script>
     
     <!-- Add event handler for external links -->
