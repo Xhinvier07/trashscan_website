@@ -741,11 +741,27 @@ nav ul li a:hover::after {
     box-shadow: var(--card-shadow);
     transition: var(--transition);
     text-align: center;
+    position: relative;
 }
 
 .team-member:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 45, 24, 0.15);
+}
+
+.member-logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.team-member:hover .member-logo {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .member-image {
