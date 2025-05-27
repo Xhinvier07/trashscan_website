@@ -83,6 +83,10 @@
                                 <img src="../images/analytics.PNG" alt="TrashScan Analytics">
                                 <div class="slide-caption">Insightful Analytics</div>
                             </div>
+                            <div class="carousel-slide" id="slide5">
+                                <img src="../images/analytics1.PNG" alt="TrashScan Analytics">
+                                <div class="slide-caption">Insightful Analytics</div>
+                            </div>
                         </div>
                         <div class="carousel-controls">
                             <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
@@ -91,9 +95,36 @@
                                 <span class="indicator" data-slide="slide2"></span>
                                 <span class="indicator" data-slide="slide3"></span>
                                 <span class="indicator" data-slide="slide4"></span>
+                                <span class="indicator" data-slide="slide5"></span>
                             </div>
                             <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Video Section -->
+        <section id="demo" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Watch Demo</h2>
+                <div class="video-container" data-aos="zoom-in">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/1puaevsOQ-I" 
+                            title="TrashScan Demo Video" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-controls">
+                        <button id="fullscreen-btn" class="video-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <button id="landscape-btn" class="video-btn">
+                            <i class="fas fa-mobile-alt"></i> Watch in Landscape
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1269,6 +1300,138 @@
             const strMinutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero to minutes
             return `${hours}:${strMinutes} ${ampm}`;
         }
+    </script>
+
+    <!-- Video Controls Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.querySelector('.video-container');
+            const videoWrapper = document.querySelector('.video-wrapper');
+            const iframe = document.querySelector('.video-wrapper iframe');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const landscapeBtn = document.getElementById('landscape-btn');
+            
+            // Check if we're on a mobile device
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Hide landscape button on desktop
+            if (!isMobile) {
+                landscapeBtn.style.display = 'none';
+            }
+            
+            // Fullscreen mode toggle
+            let isFullscreen = false;
+            fullscreenBtn.addEventListener('click', function() {
+                if (!isFullscreen) {
+                    // Enter fullscreen mode
+                    videoContainer.classList.add('fullscreen-mode');
+                    document.body.style.overflow = 'hidden';
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                    
+                    // Try native fullscreen API first
+                    if (videoContainer.requestFullscreen) {
+                        videoContainer.requestFullscreen();
+                    } else if (videoContainer.webkitRequestFullscreen) {
+                        videoContainer.webkitRequestFullscreen();
+                    } else if (videoContainer.msRequestFullscreen) {
+                        videoContainer.msRequestFullscreen();
+                    }
+                } else {
+                    // Exit fullscreen mode
+                    videoContainer.classList.remove('fullscreen-mode');
+                    document.body.style.overflow = '';
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                    
+                    // Exit native fullscreen if active
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+                isFullscreen = !isFullscreen;
+            });
+            
+            // Handle fullscreen change events
+            document.addEventListener('fullscreenchange', exitFullscreenHandler);
+            document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+            document.addEventListener('mozfullscreenchange', exitFullscreenHandler);
+            document.addEventListener('MSFullscreenChange', exitFullscreenHandler);
+            
+            function exitFullscreenHandler() {
+                if (!document.fullscreenElement && 
+                    !document.webkitFullscreenElement && 
+                    !document.mozFullScreenElement && 
+                    !document.msFullscreenElement) {
+                    // Exit our custom fullscreen mode when native fullscreen is exited
+                    if (isFullscreen) {
+                        videoContainer.classList.remove('fullscreen-mode');
+                        document.body.style.overflow = '';
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                        isFullscreen = false;
+                    }
+                }
+            }
+            
+            // Landscape mode toggle (mobile only)
+            let isLandscape = false;
+            landscapeBtn.addEventListener('click', function() {
+                if (!isLandscape) {
+                    // Enter landscape mode
+                    videoContainer.classList.add('landscape-mode');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Try to force landscape orientation on supported devices
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape').catch(function(error) {
+                            console.log('Orientation lock failed: ' + error);
+                        });
+                    }
+                    
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile"></i> Exit Landscape';
+                    
+                    // If we're also in fullscreen, exit it
+                    if (isFullscreen) {
+                        videoContainer.classList.remove('fullscreen-mode');
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                        isFullscreen = false;
+                    }
+                } else {
+                    // Exit landscape mode
+                    videoContainer.classList.remove('landscape-mode');
+                    document.body.style.overflow = '';
+                    
+                    // Release orientation lock if supported
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                    
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
+                }
+                isLandscape = !isLandscape;
+            });
+            
+            // Handle orientation change events on mobile
+            window.addEventListener('orientationchange', function() {
+                // If we're in landscape mode but device is now in portrait, exit landscape mode
+                if (isLandscape && (window.orientation === 0 || window.orientation === 180)) {
+                    videoContainer.classList.remove('landscape-mode');
+                    document.body.style.overflow = '';
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
+                    isLandscape = false;
+                }
+            });
+            
+            // Add video to navigation menu
+            const navMenu = document.querySelector('.nav-menu ul');
+            const demoMenuItem = document.createElement('li');
+            demoMenuItem.innerHTML = '<a href="#demo">Demo</a>';
+            
+            // Insert after Home menu item
+            navMenu.insertBefore(demoMenuItem, navMenu.querySelector('li:nth-child(2)'));
+        });
     </script>
 </body>
 </html>
