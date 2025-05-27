@@ -38,6 +38,8 @@
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#overview">Overview</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#pilot-study">Pilot Study</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -129,6 +131,221 @@
                 </div>
             </div>
         </section>
+
+        <!-- Pilot Study Section -->
+        <section id="pilot-study" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Pilot Study Deployment</h2>
+                <div class="pilot-content">
+                    <div class="pilot-info" data-aos="fade-right" data-aos-delay="200">
+                        <div class="pilot-badge">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Brgy 118 Zone 9, Tondo Manila</span>
+                        </div>
+                        <div class="pilot-badge">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>1 Week Implementation</span>
+                        </div>
+                        <h3>Real-World Application</h3>
+                        <p class="pilot-description">
+                            We successfully deployed TrashScan in Brgy 118 Zone 9, Tondo Manila for a one-week pilot study to demonstrate its effectiveness in a real urban environment. The system monitored key streets, identified litter hotspots, and provided actionable data to local authorities.
+                        </p>
+                        <div class="pilot-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-camera-retro"></i>
+                                </div>
+                                <div class="highlight-text">
+                                    <h4>CCTV Integration</h4>
+                                    <p>Connected to existing surveillance infrastructure</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <div class="highlight-text">
+                                    <h4>Data Collection</h4>
+                                    <p>Gathered valuable insights on litter patterns and density</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="highlight-text">
+                                    <h4>Community Engagement</h4>
+                                    <p>Collaborated with local officials and sanitation workers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pilot-carousel" data-aos="fade-left" data-aos-delay="400">
+                        <div class="pilot-carousel-container">
+                            <div class="pilot-slide active">
+                                <img src="../images/deploy.jpg" alt="TrashScan Deployment">
+                                <div class="pilot-slide-caption">System Installation</div>
+                            </div>
+                            <div class="pilot-slide">
+                                <img src="../images/deploy3.jpg" alt="TrashScan Monitoring">
+                                <div class="pilot-slide-caption">LGU Officials</div>
+                            </div>
+                            <div class="pilot-slide">
+                                <img src="../images/deploy4.jpg" alt="TrashScan Data Collection">
+                                <div class="pilot-slide-caption">CCTV Installation</div>
+                            </div>
+                            <div class="pilot-slide">
+                                <img src="../images/deploy1.jpg" alt="TrashScan Team">
+                                <div class="pilot-slide-caption">Chesa Street CCTV</div>
+                            </div>
+                            <div class="pilot-slide">
+                                <img src="../images/deploy2.jpg" alt="TrashScan Results">
+                                <div class="pilot-slide-caption">Sta. Fe Street CCTV</div>
+                            </div>
+                            <div class="pilot-slide">
+                                <img src="../images/deploy5.jpg" alt="TrashScan Results">
+                                <div class="pilot-slide-caption">CCTV Station</div>
+                            </div>
+                        </div>
+                        <div class="pilot-carousel-controls">
+                            <button class="pilot-carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <div class="pilot-carousel-indicators">
+                                <span class="pilot-indicator active" data-slide="0"></span>
+                                <span class="pilot-indicator" data-slide="1"></span>
+                                <span class="pilot-indicator" data-slide="2"></span>
+                                <span class="pilot-indicator" data-slide="3"></span>
+                                <span class="pilot-indicator" data-slide="4"></span>
+                                <span class="pilot-indicator" data-slide="5"></span>
+                            </div>
+                            <button class="pilot-carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Immediate script to initialize pilot study carousel -->
+        <script>
+            (function() {
+                console.log('Initializing pilot carousel immediately');
+                
+                // Get all required elements
+                var pilotSlides = document.querySelectorAll('.pilot-slide');
+                var pilotIndicators = document.querySelectorAll('.pilot-indicator');
+                var pilotPrevBtn = document.querySelector('.pilot-carousel .prev-btn');
+                var pilotNextBtn = document.querySelector('.pilot-carousel .next-btn');
+                var pilotCarouselContainer = document.querySelector('.pilot-carousel-container');
+                
+                if (!pilotSlides.length) {
+                    console.error('No pilot slides found!');
+                    return;
+                }
+                
+                console.log('Found ' + pilotSlides.length + ' slides');
+                
+                // Initialize variables
+                var totalPilotSlides = pilotSlides.length;
+                var currentPilotSlide = 0;
+                var pilotSlideInterval;
+                
+                // Function to show a specific slide
+                function showPilotSlide(index) {
+                    // Remove active class from all slides
+                    for (var i = 0; i < pilotSlides.length; i++) {
+                        pilotSlides[i].classList.remove('active');
+                    }
+                    
+                    // Remove active class from all indicators
+                    for (var i = 0; i < pilotIndicators.length; i++) {
+                        pilotIndicators[i].classList.remove('active');
+                    }
+                    
+                    // Calculate the index with wrap-around
+                    currentPilotSlide = (index + totalPilotSlides) % totalPilotSlides;
+                    
+                    // Add active class to current slide and indicator
+                    pilotSlides[currentPilotSlide].classList.add('active');
+                    pilotIndicators[currentPilotSlide].classList.add('active');
+                    
+                    console.log('Showing slide: ' + currentPilotSlide);
+                }
+                
+                // Function to advance to next slide
+                function nextPilotSlide() {
+                    showPilotSlide(currentPilotSlide + 1);
+                }
+                
+                // Function to go to previous slide
+                function prevPilotSlide() {
+                    showPilotSlide(currentPilotSlide - 1);
+                }
+                
+                // Function to start auto-rotation
+                function startPilotCarousel() {
+                    stopPilotCarousel(); // Clear any existing interval
+                    pilotSlideInterval = setInterval(function() {
+                        nextPilotSlide();
+                    }, 5000);
+                }
+                
+                // Function to stop auto-rotation
+                function stopPilotCarousel() {
+                    if (pilotSlideInterval) {
+                        clearInterval(pilotSlideInterval);
+                    }
+                }
+                
+                // Add click handler for next button
+                if (pilotNextBtn) {
+                    pilotNextBtn.onclick = function(e) {
+                        e.preventDefault();
+                        stopPilotCarousel();
+                        nextPilotSlide();
+                        startPilotCarousel();
+                    };
+                }
+                
+                // Add click handler for previous button
+                if (pilotPrevBtn) {
+                    pilotPrevBtn.onclick = function(e) {
+                        e.preventDefault();
+                        stopPilotCarousel();
+                        prevPilotSlide();
+                        startPilotCarousel();
+                    };
+                }
+                
+                // Add click handlers for indicators
+                for (var i = 0; i < pilotIndicators.length; i++) {
+                    (function(index) {
+                        pilotIndicators[index].onclick = function() {
+                            stopPilotCarousel();
+                            showPilotSlide(index);
+                            startPilotCarousel();
+                        };
+                    })(i);
+                }
+                
+                // Add click handlers for slides
+                for (var i = 0; i < pilotSlides.length; i++) {
+                    pilotSlides[i].onclick = function() {
+                        stopPilotCarousel();
+                        nextPilotSlide();
+                        startPilotCarousel();
+                    };
+                }
+                
+                // Add hover handlers
+                if (pilotCarouselContainer) {
+                    pilotCarouselContainer.onmouseenter = stopPilotCarousel;
+                    pilotCarouselContainer.onmouseleave = startPilotCarousel;
+                }
+                
+                // Start the carousel
+                startPilotCarousel();
+                console.log('Pilot carousel started');
+            })();
+        </script>
 
         <!-- Features Section -->
         <section id="features" class="section bg-light">
@@ -1097,6 +1314,128 @@
         document.getElementById('logoLink').addEventListener('click', function() {
             window.location.href = '';
         });
+
+        // Video Controls Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.querySelector('.video-container');
+            const videoWrapper = document.querySelector('.video-wrapper');
+            const iframe = document.querySelector('.video-wrapper iframe');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const landscapeBtn = document.getElementById('landscape-btn');
+            
+            // Check if we're on a mobile device
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Hide landscape button on desktop
+            if (!isMobile) {
+                landscapeBtn.style.display = 'none';
+            }
+            
+            // Fullscreen mode toggle
+            let isFullscreen = false;
+            fullscreenBtn.addEventListener('click', function() {
+                if (!isFullscreen) {
+                    // Enter fullscreen mode
+                    videoContainer.classList.add('fullscreen-mode');
+                    document.body.style.overflow = 'hidden';
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                    
+                    // Try native fullscreen API first
+                    if (videoContainer.requestFullscreen) {
+                        videoContainer.requestFullscreen();
+                    } else if (videoContainer.webkitRequestFullscreen) {
+                        videoContainer.webkitRequestFullscreen();
+                    } else if (videoContainer.msRequestFullscreen) {
+                        videoContainer.msRequestFullscreen();
+                    }
+                } else {
+                    // Exit fullscreen mode
+                    videoContainer.classList.remove('fullscreen-mode');
+                    document.body.style.overflow = '';
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                    
+                    // Exit native fullscreen if active
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+                isFullscreen = !isFullscreen;
+            });
+            
+            // Handle fullscreen change events
+            document.addEventListener('fullscreenchange', exitFullscreenHandler);
+            document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+            document.addEventListener('mozfullscreenchange', exitFullscreenHandler);
+            document.addEventListener('MSFullscreenChange', exitFullscreenHandler);
+            
+            function exitFullscreenHandler() {
+                if (!document.fullscreenElement && 
+                    !document.webkitFullscreenElement && 
+                    !document.mozFullScreenElement && 
+                    !document.msFullscreenElement) {
+                    // Exit our custom fullscreen mode when native fullscreen is exited
+                    if (isFullscreen) {
+                        videoContainer.classList.remove('fullscreen-mode');
+                        document.body.style.overflow = '';
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                        isFullscreen = false;
+                    }
+                }
+            }
+            
+            // Landscape mode toggle (mobile only)
+            let isLandscape = false;
+            landscapeBtn.addEventListener('click', function() {
+                if (!isLandscape) {
+                    // Enter landscape mode
+                    videoContainer.classList.add('landscape-mode');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Try to force landscape orientation on supported devices
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape').catch(function(error) {
+                            console.log('Orientation lock failed: ' + error);
+                        });
+                    }
+                    
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile"></i> Exit Landscape';
+                    
+                    // If we're also in fullscreen, exit it
+                    if (isFullscreen) {
+                        videoContainer.classList.remove('fullscreen-mode');
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                        isFullscreen = false;
+                    }
+                } else {
+                    // Exit landscape mode
+                    videoContainer.classList.remove('landscape-mode');
+                    document.body.style.overflow = '';
+                    
+                    // Release orientation lock if supported
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                    
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
+                }
+                isLandscape = !isLandscape;
+            });
+            
+            // Handle orientation change events on mobile
+            window.addEventListener('orientationchange', function() {
+                // If we're in landscape mode but device is now in portrait, exit landscape mode
+                if (isLandscape && (window.orientation === 0 || window.orientation === 180)) {
+                    videoContainer.classList.remove('landscape-mode');
+                    document.body.style.overflow = '';
+                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
+                    isLandscape = false;
+                }
+            });
+        });
     </script>
     
     <!-- Add event handler for external links -->
@@ -1306,138 +1645,6 @@
             const strMinutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero to minutes
             return `${hours}:${strMinutes} ${ampm}`;
         }
-    </script>
-
-    <!-- Video Controls Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoContainer = document.querySelector('.video-container');
-            const videoWrapper = document.querySelector('.video-wrapper');
-            const iframe = document.querySelector('.video-wrapper iframe');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const landscapeBtn = document.getElementById('landscape-btn');
-            
-            // Check if we're on a mobile device
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            // Hide landscape button on desktop
-            if (!isMobile) {
-                landscapeBtn.style.display = 'none';
-            }
-            
-            // Fullscreen mode toggle
-            let isFullscreen = false;
-            fullscreenBtn.addEventListener('click', function() {
-                if (!isFullscreen) {
-                    // Enter fullscreen mode
-                    videoContainer.classList.add('fullscreen-mode');
-                    document.body.style.overflow = 'hidden';
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-                    
-                    // Try native fullscreen API first
-                    if (videoContainer.requestFullscreen) {
-                        videoContainer.requestFullscreen();
-                    } else if (videoContainer.webkitRequestFullscreen) {
-                        videoContainer.webkitRequestFullscreen();
-                    } else if (videoContainer.msRequestFullscreen) {
-                        videoContainer.msRequestFullscreen();
-                    }
-                } else {
-                    // Exit fullscreen mode
-                    videoContainer.classList.remove('fullscreen-mode');
-                    document.body.style.overflow = '';
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                    
-                    // Exit native fullscreen if active
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }
-                isFullscreen = !isFullscreen;
-            });
-            
-            // Handle fullscreen change events
-            document.addEventListener('fullscreenchange', exitFullscreenHandler);
-            document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
-            document.addEventListener('mozfullscreenchange', exitFullscreenHandler);
-            document.addEventListener('MSFullscreenChange', exitFullscreenHandler);
-            
-            function exitFullscreenHandler() {
-                if (!document.fullscreenElement && 
-                    !document.webkitFullscreenElement && 
-                    !document.mozFullScreenElement && 
-                    !document.msFullscreenElement) {
-                    // Exit our custom fullscreen mode when native fullscreen is exited
-                    if (isFullscreen) {
-                        videoContainer.classList.remove('fullscreen-mode');
-                        document.body.style.overflow = '';
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                        isFullscreen = false;
-                    }
-                }
-            }
-            
-            // Landscape mode toggle (mobile only)
-            let isLandscape = false;
-            landscapeBtn.addEventListener('click', function() {
-                if (!isLandscape) {
-                    // Enter landscape mode
-                    videoContainer.classList.add('landscape-mode');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Try to force landscape orientation on supported devices
-                    if (screen.orientation && screen.orientation.lock) {
-                        screen.orientation.lock('landscape').catch(function(error) {
-                            console.log('Orientation lock failed: ' + error);
-                        });
-                    }
-                    
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile"></i> Exit Landscape';
-                    
-                    // If we're also in fullscreen, exit it
-                    if (isFullscreen) {
-                        videoContainer.classList.remove('fullscreen-mode');
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                        isFullscreen = false;
-                    }
-                } else {
-                    // Exit landscape mode
-                    videoContainer.classList.remove('landscape-mode');
-                    document.body.style.overflow = '';
-                    
-                    // Release orientation lock if supported
-                    if (screen.orientation && screen.orientation.unlock) {
-                        screen.orientation.unlock();
-                    }
-                    
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
-                }
-                isLandscape = !isLandscape;
-            });
-            
-            // Handle orientation change events on mobile
-            window.addEventListener('orientationchange', function() {
-                // If we're in landscape mode but device is now in portrait, exit landscape mode
-                if (isLandscape && (window.orientation === 0 || window.orientation === 180)) {
-                    videoContainer.classList.remove('landscape-mode');
-                    document.body.style.overflow = '';
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
-                    isLandscape = false;
-                }
-            });
-            
-            // Add video to navigation menu
-            const navMenu = document.querySelector('.nav-menu ul');
-            const demoMenuItem = document.createElement('li');
-            demoMenuItem.innerHTML = '<a href="#demo">Demo</a>';
-            
-            // Insert after Home menu item
-            navMenu.insertBefore(demoMenuItem, navMenu.querySelector('li:nth-child(2)'));
-        });
     </script>
 </body>
 </html>
