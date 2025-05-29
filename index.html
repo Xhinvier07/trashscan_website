@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css">
 </head>
 <body>
+    <!-- Canvas Cursor Effect -->
+    <canvas id="cursor-canvas" class="cursor-canvas"></canvas>
+    
     <!-- Modern Header with Hero Image -->
     <header class="header">
         <div class="navbar">
@@ -119,14 +122,6 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             allowfullscreen>
                         </iframe>
-                    </div>
-                    <div class="video-controls">
-                        <button id="fullscreen-btn" class="video-btn">
-                            <i class="fas fa-expand"></i> Fullscreen
-                        </button>
-                        <button id="landscape-btn" class="video-btn">
-                            <i class="fas fa-mobile-alt"></i> Watch in Landscape
-                        </button>
                     </div>
                 </div>
             </div>
@@ -1078,30 +1073,83 @@
             mirror: false
         });
 
-        // Hamburger menu functionality
-        document.querySelector('.hamburger-menu').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-menu').classList.toggle('active');
+        // Hamburger menu functionality with improved transitions
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        // Toggle menu function
+        function toggleMenu() {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Prevent body scrolling when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Add click listener to hamburger
+        hamburgerMenu.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking anywhere outside
+        document.addEventListener('click', function(e) {
+            // If menu is open and click is outside the menu and not on hamburger
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !hamburgerMenu.contains(e.target)) {
+                toggleMenu();
+            }
         });
 
         // Close mobile menu when a link is clicked
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                document.querySelector('.hamburger-menu').classList.remove('active');
-                document.querySelector('.nav-menu').classList.remove('active');
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+                
+                // Add active class to clicked link
+                navLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
             });
         });
 
         // Close mobile menu when scrolling
         window.addEventListener('scroll', function() {
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (hamburgerMenu.classList.contains('active')) {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
+            if (navMenu.classList.contains('active')) {
+                toggleMenu();
             }
         });
+        
+        // Set active menu item based on scroll position
+        function setActiveNavItem() {
+            const sections = document.querySelectorAll('section');
+            const scrollPosition = window.scrollY + 200;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Add scroll event listener for active menu highlighting
+        window.addEventListener('scroll', setActiveNavItem);
+        
+        // Initialize active menu item on page load
+        document.addEventListener('DOMContentLoaded', setActiveNavItem);
 
         // Back to top button functionality
         const backToTopButton = document.getElementById('backToTop');
@@ -1400,121 +1448,17 @@
             const videoContainer = document.querySelector('.video-container');
             const videoWrapper = document.querySelector('.video-wrapper');
             const iframe = document.querySelector('.video-wrapper iframe');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const landscapeBtn = document.getElementById('landscape-btn');
             
-            // Check if we're on a mobile device
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            // Hide landscape button on desktop
-            if (!isMobile) {
-                landscapeBtn.style.display = 'none';
+            // Handle responsive sizing
+            function adjustVideoHeight() {
+                const width = videoWrapper.offsetWidth;
+                // 16:9 aspect ratio calculation
+                videoWrapper.style.height = (width * 0.5625) + 'px';
             }
             
-            // Fullscreen mode toggle
-            let isFullscreen = false;
-            fullscreenBtn.addEventListener('click', function() {
-                if (!isFullscreen) {
-                    // Enter fullscreen mode
-                    videoContainer.classList.add('fullscreen-mode');
-                    document.body.style.overflow = 'hidden';
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-                    
-                    // Try native fullscreen API first
-                    if (videoContainer.requestFullscreen) {
-                        videoContainer.requestFullscreen();
-                    } else if (videoContainer.webkitRequestFullscreen) {
-                        videoContainer.webkitRequestFullscreen();
-                    } else if (videoContainer.msRequestFullscreen) {
-                        videoContainer.msRequestFullscreen();
-                    }
-                } else {
-                    // Exit fullscreen mode
-                    videoContainer.classList.remove('fullscreen-mode');
-                    document.body.style.overflow = '';
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                    
-                    // Exit native fullscreen if active
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }
-                isFullscreen = !isFullscreen;
-            });
-            
-            // Handle fullscreen change events
-            document.addEventListener('fullscreenchange', exitFullscreenHandler);
-            document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
-            document.addEventListener('mozfullscreenchange', exitFullscreenHandler);
-            document.addEventListener('MSFullscreenChange', exitFullscreenHandler);
-            
-            function exitFullscreenHandler() {
-                if (!document.fullscreenElement && 
-                    !document.webkitFullscreenElement && 
-                    !document.mozFullScreenElement && 
-                    !document.msFullscreenElement) {
-                    // Exit our custom fullscreen mode when native fullscreen is exited
-                    if (isFullscreen) {
-                        videoContainer.classList.remove('fullscreen-mode');
-                        document.body.style.overflow = '';
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                        isFullscreen = false;
-                    }
-                }
-            }
-            
-            // Landscape mode toggle (mobile only)
-            let isLandscape = false;
-            landscapeBtn.addEventListener('click', function() {
-                if (!isLandscape) {
-                    // Enter landscape mode
-                    videoContainer.classList.add('landscape-mode');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Try to force landscape orientation on supported devices
-                    if (screen.orientation && screen.orientation.lock) {
-                        screen.orientation.lock('landscape').catch(function(error) {
-                            console.log('Orientation lock failed: ' + error);
-                        });
-                    }
-                    
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile"></i> Exit Landscape';
-                    
-                    // If we're also in fullscreen, exit it
-                    if (isFullscreen) {
-                        videoContainer.classList.remove('fullscreen-mode');
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-                        isFullscreen = false;
-                    }
-                } else {
-                    // Exit landscape mode
-                    videoContainer.classList.remove('landscape-mode');
-                    document.body.style.overflow = '';
-                    
-                    // Release orientation lock if supported
-                    if (screen.orientation && screen.orientation.unlock) {
-                        screen.orientation.unlock();
-                    }
-                    
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
-                }
-                isLandscape = !isLandscape;
-            });
-            
-            // Handle orientation change events on mobile
-            window.addEventListener('orientationchange', function() {
-                // If we're in landscape mode but device is now in portrait, exit landscape mode
-                if (isLandscape && (window.orientation === 0 || window.orientation === 180)) {
-                    videoContainer.classList.remove('landscape-mode');
-                    document.body.style.overflow = '';
-                    landscapeBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Watch in Landscape';
-                    isLandscape = false;
-                }
-            });
+            // Initialize and add resize listener
+            adjustVideoHeight();
+            window.addEventListener('resize', adjustVideoHeight);
         });
 
         // Citation format tabs functionality
@@ -1780,6 +1724,231 @@
             const strMinutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero to minutes
             return `${hours}:${strMinutes} ${ampm}`;
         }
+    </script>
+
+    <!-- Canvas Cursor Effect Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Canvas Cursor Effect
+            const canvasRef = document.getElementById('cursor-canvas');
+            let ctx = null;
+            let leaves = [];
+            let pos = { x: 0, y: 0 };
+            let lastPos = { x: 0, y: 0 };
+            let lastLeafSpawn = 0;
+            let animationFrameId = null;
+            
+            // Leaf settings
+            const LEAF_COUNT = 20; // Increased from 12 to show more leaves
+            const MAX_LEAF_SIZE = 20; // Slightly larger max size
+            const MIN_LEAF_SIZE = 8; // Slightly smaller min size for variety
+            const LEAF_COLORS = [
+                'rgba(11, 70, 25, 0.7)',
+                'rgba(15, 112, 41, 0.8)',
+                'rgba(0, 77, 54, 0.7)',
+                'rgba(0, 45, 24, 0.8)',
+                'rgba(21, 140, 54, 0.7)'
+            ];
+            
+            // Preload leaf images
+            const leafImages = [];
+            const leafCount = 3; // Number of different leaf images
+            
+            // Base64 encoded fallback leaf images
+            const fallbackLeaves = [
+                // Green leaf shape 1 (simple oval leaf)
+                'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUwLDEwIEM3MCwyNSA5MCw0MCA4NSw2MCBDODAsODAgNjAsODUgNTAsOTAgQzQwLDg1IDIwLDgwIDE1LDYwIEMxMCw0MCAzMCwyNSA1MCwxMCIgZmlsbD0iIzBCNDYxOSIgZmlsbC1vcGFjaXR5PSIwLjgiIHN0cm9rZT0iIzAwNGQzNiIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTUwLDEwIEM1MCw0MCA1MCw3MCA1MCw5MCIgc3Ryb2tlPSIjMDA0ZDM2IiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=',
+                
+                // Green leaf shape 2 (more detailed leaf)
+                'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUwLDEwIEM3NSwxNSA5NSw0MCA5MCw2NSBDODUsODUgNjUsOTAgNTAsOTAgQzM1LDkwIDE1LDg1IDEwLDY1IEM1LDQwIDI1LDE1IDUwLDEwIiBmaWxsPSIjMGY3MDI5IiBmaWxsLW9wYWNpdHk9IjAuOCIgc3Ryb2tlPSIjMDAyZDE4IiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNNTAsMTAgQzQ1LDMwIDQ1LDUwIDUwLDkwIiBzdHJva2U9IiMwMDJkMTgiIHN0cm9rZS13aWR0aD0iMSIvPjxwYXRoIGQ9Ik0zMCw0MCBDNDAsNDUgNjAsNDUgNzAsNDAiIHN0cm9rZT0iIzAwMmQxOCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTI1LDYwIEMzNSw2NSA2NSw2NSA3NSw2MCIgc3Ryb2tlPSIjMDAyZDE4IiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=',
+                
+                // Green leaf shape 3 (slender leaf)
+                'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUwLDEwIEMzMCwzMCAyMCw1MCAyNSw3MCBDMzAsODUgNDUsOTAgNTAsOTAgQzU1LDkwIDcwLDg1IDc1LDcwIEM4MCw1MCA3MCwzMCA1MCwxMCIgZmlsbD0iIzAwNGQzNiIgZmlsbC1vcGFjaXR5PSIwLjgiIHN0cm9rZT0iIzAwMmQxOCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTUwLDEwIEM1Miw0MCA1Miw3MCA1MCw5MCIgc3Ryb2tlPSIjMDAyZDE4IiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNMzAsNTAgQzQwLDU1IDYwLDU1IDcwLDUwIiBzdHJva2U9IiMwMDJkMTgiIHN0cm9rZS13aWR0aD0iMC44Ii8+PC9zdmc+'
+            ];
+            
+            // Leaf class to manage each leaf instance
+            class Leaf {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * (MAX_LEAF_SIZE - MIN_LEAF_SIZE) + MIN_LEAF_SIZE;
+                    this.speedX = Math.random() * 2 - 1;
+                    this.speedY = Math.random() * 2 + 1;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = Math.random() * 2 - 1;
+                    this.opacity = 1;
+                    this.fadeSpeed = 0.005 + Math.random() * 0.01; // Slower fade for longer-lasting leaves
+                    this.imageIndex = Math.floor(Math.random() * leafCount);
+                    this.color = LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)];
+                }
+                
+                update() {
+                    // Update position with some gravity and wind effect
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.speedY += 0.03; // Reduced gravity for slower falling
+                    this.rotation += this.rotationSpeed;
+                    this.opacity -= this.fadeSpeed;
+                    
+                    // Return true if the leaf is still visible, false if it should be removed
+                    return this.opacity > 0;
+                }
+                
+                draw(ctx) {
+                    if (!ctx) return;
+                    
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate((this.rotation * Math.PI) / 180);
+                    
+                    // Draw the leaf image
+                    const leafImage = leafImages[this.imageIndex];
+                    if (leafImage) {
+                        ctx.drawImage(
+                            leafImage, 
+                            -this.size / 2, 
+                            -this.size / 2, 
+                            this.size, 
+                            this.size
+                        );
+                    }
+                    
+                    ctx.restore();
+                }
+            }
+            
+            // Function to resize canvas to full window size
+            function resizeCanvas() {
+                if (!canvasRef) return;
+                
+                canvasRef.width = window.innerWidth;
+                canvasRef.height = window.innerHeight;
+                
+                // Get the 2D context after resize
+                ctx = canvasRef.getContext('2d');
+            }
+            
+            // Track mouse position
+            function updateMousePosition(e) {
+                lastPos.x = pos.x;
+                lastPos.y = pos.y;
+                
+                pos.x = e.clientX;
+                pos.y = e.clientY;
+                
+                // Calculate distance moved
+                const distance = Math.sqrt(
+                    Math.pow(pos.x - lastPos.x, 2) + 
+                    Math.pow(pos.y - lastPos.y, 2)
+                );
+                
+                // Add new leaves based on movement distance and time since last spawn
+                const now = Date.now();
+                // Reduced threshold from 5 to 1 and time from 50ms to 20ms for more responsive spawning
+                if (distance > 1 && now - lastLeafSpawn > 20) {
+                    // Always add at least 1 leaf, up to 4 with faster movement
+                    const leafsToAdd = Math.max(1, Math.min(4, Math.floor(distance / 5)));
+                    
+                    for (let i = 0; i < leafsToAdd; i++) {
+                        // Add slight randomness to position
+                        const offsetX = Math.random() * 20 - 10;
+                        const offsetY = Math.random() * 20 - 10;
+                        leaves.push(new Leaf(pos.x + offsetX, pos.y + offsetY));
+                    }
+                    
+                    // Limit total leaves for performance
+                    if (leaves.length > LEAF_COUNT) {
+                        leaves = leaves.slice(-LEAF_COUNT);
+                    }
+                    
+                    lastLeafSpawn = now;
+                }
+                
+                // Add occasional leaf even when barely moving
+                if (now - lastLeafSpawn > 300) {
+                    leaves.push(new Leaf(pos.x, pos.y));
+                    lastLeafSpawn = now;
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                if (!ctx || !canvasRef) return;
+                
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
+                
+                // Update and draw all leaves
+                leaves = leaves.filter(leaf => {
+                    const isVisible = leaf.update();
+                    if (isVisible) {
+                        leaf.draw(ctx);
+                    }
+                    return isVisible;
+                });
+                
+                // Continue animation loop
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            
+            // Initialize everything
+            async function init() {
+                if (!canvasRef) {
+                    console.error('Canvas element not found!');
+                    return;
+                }
+                
+                // Set up canvas
+                resizeCanvas();
+                
+                // Preload images
+                await preloadLeafImages();
+                
+                // Set up event listeners
+                window.addEventListener('resize', resizeCanvas);
+                document.addEventListener('mousemove', updateMousePosition);
+                
+                // Start animation loop
+                animate();
+                
+                // Add initial leaves around cursor position
+                for (let i = 0; i < 5; i++) {
+                    const offsetX = Math.random() * 50 - 25;
+                    const offsetY = Math.random() * 50 - 25;
+                    leaves.push(new Leaf(window.innerWidth / 2 + offsetX, window.innerHeight / 2 + offsetY));
+                }
+                
+                console.log('Cursor effect initialized successfully');
+            }
+            
+            // Load leaf images and initialize
+            function preloadLeafImages() {
+                return new Promise((resolve) => {
+                    let loadedCount = 0;
+                    
+                    for (let i = 0; i < leafCount; i++) {
+                        const img = new Image();
+                        
+                        img.onload = () => {
+                            loadedCount++;
+                            if (loadedCount === leafCount) {
+                                resolve();
+                            }
+                        };
+                        
+                        img.src = fallbackLeaves[i];
+                        leafImages.push(img);
+                    }
+                    
+                    // Fallback resolve after 2 seconds if images don't load
+                    setTimeout(resolve, 2000);
+                });
+            }
+            
+            // Start everything
+            init();
+        });
     </script>
 </body>
 </html>
