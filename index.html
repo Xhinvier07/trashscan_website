@@ -33,9 +33,8 @@
                 <img src="../images/banner1.png" alt="TrashScan Logo" class="logo">
             </div>
             <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-times close-icon"></i>
             </div>
             <nav class="nav-menu">
                 <ul>
@@ -170,11 +169,12 @@
                 <div class="video-container" data-aos="zoom-in">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/1puaevsOQ-I" 
+                            src="https://www.youtube.com/embed/1puaevsOQ-I?fs=1" 
                             title="TrashScan Demo Video" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
+                            allowfullscreen
+                            playsinline>
                         </iframe>
                     </div>
                 </div>
@@ -1148,7 +1148,7 @@
         // Add click listener to hamburger
         hamburgerMenu.addEventListener('click', toggleMenu);
         
-        // Close menu when clicking anywhere outside
+        // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             // If menu is open and click is outside the menu and not on hamburger
             if (navMenu.classList.contains('active') && 
